@@ -1,0 +1,2 @@
+class TypeEngine < ApplicationRecord
+end

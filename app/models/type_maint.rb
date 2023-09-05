@@ -1,0 +1,2 @@
+class TypeMaint < ApplicationRecord
+end
