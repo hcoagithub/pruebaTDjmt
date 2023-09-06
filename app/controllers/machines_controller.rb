@@ -8,15 +8,18 @@ class MachinesController < ApplicationController
 
   # GET /machines/1 or /machines/1.json
   def show
+    @machine = Machine.find(params[:id])
   end
 
   # GET /machines/new
   def new
+    @type_engines = TypeEngine.all
     @machine = Machine.new
   end
 
   # GET /machines/1/edit
   def edit
+    @type_engines = TypeEngine.all
   end
 
   # POST /machines or /machines.json
@@ -59,6 +62,10 @@ class MachinesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_type_engine
+      @type_engines = TypeEngine.all
+    end
+
     def set_machine
       @machine = Machine.find(params[:id])
     end

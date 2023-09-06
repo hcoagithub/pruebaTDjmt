@@ -11,12 +11,18 @@
 
   <p>
     <strong>Image:</strong>
-    <%= machine.image %>
+    
+
+    <% if machine.image.present? %>
+      <%= image_tag machine.image, class:'img-publication' %>
+    <% else %>
+      <%= image_tag "https://s4.aconvert.com/convert/p3r68-cdx67/af85y-vxavr.svg", class:'img-publication' %>
+    <% end %>
   </p>
 
   <p>
     <strong>Type engine:</strong>
-    <%= machine.type_engine_id %>
+    <%= machine.type_engine.name %>
   </p>
 
 </div>
