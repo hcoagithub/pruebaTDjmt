@@ -2,9 +2,10 @@
     <div class="container-fluid">
 
         
-        <%= link_to 'JetMaintain', pages_home_path, class:'navbar-brand text-primary' %>
-        <%= link_to 'Home', pages_home_path, class:'navbar-brand' %>
-        <%= link_to 'Terminos y Condiciones', pages_terminos_condiciones_path, class:'navbar-brand' %>
+        <%= link_to 'JetMaintain', home_path, class:'navbar-brand text-primary' %>
+        <%= link_to 'Home', home_path, class:'navbar-brand' %>
+        <%= link_to 'Motores', machines_path, class:'navbar-brand' %>
+        <%= link_to 'Terminos y Condiciones', terminos_condiciones_path, class:'navbar-brand' %>
 
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -17,9 +18,7 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <% if user_signed_in? %>
                             
-                                <%= image_tag current_user.images , class:'img-user' if current_user.images.attached? %>
-                            
-                                <%= current_user.name %>
+                            <%= current_user.email %>
                             
                         <% else %>
                             registrate o conectate

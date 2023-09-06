@@ -1,6 +1,10 @@
 class MachinesController < ApplicationController
   before_action :set_machine, only: %i[ show edit update destroy ]
 
+  before_action :authenticate_user!
+  before_action :authorize_admin, only: [:new, :create, :edit, :update, :destroy]
+
+
   # GET /machines or /machines.json
   def index
     @machines = Machine.all
@@ -62,6 +66,13 @@ class MachinesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def authorize_admin
+      unless current_user && current_user.admin?
+        flash[:alert] = "No tienes permisos para realizar esta acción."
+        redirect_to root_path
+      end
+    end
+
     def set_type_engine
       @type_engines = TypeEngine.all
     end

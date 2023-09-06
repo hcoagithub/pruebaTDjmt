@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'pages/home'
+  get 'home', to: "pages#home"
+  get 'terminos_condiciones', to: "pages#terminos_condiciones"
   get 'pages/terminos_condiciones'
   resources :machines
   resources :engines

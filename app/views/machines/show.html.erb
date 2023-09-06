@@ -2,8 +2,13 @@
 <%= render @machine %>
 
 <div>
-  <%= link_to "Edit this machine", edit_machine_path(@machine) %> |
-  <%= link_to "Back to machines", machines_path %>
+  <% if current_user.admin? %>
+    <%= link_to "Back to machines", machines_path %>
+    <%= link_to "Edit this machine", edit_machine_path(@machine) %> |
+    <%= button_to "Destroy this machine", @machine, method: :delete %>
 
-  <%= button_to "Destroy this machine", @machine, method: :delete %>
+  <% else %>
+    <%= link_to "Back to machines", machines_path %>
+  <% end %>
+    
 </div>
