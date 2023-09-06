@@ -7,7 +7,10 @@ class MachinesController < ApplicationController
 
   # GET /machines or /machines.json
   def index
-    @machines = Machine.all
+    
+
+    @machines=Machine.all
+
   end
 
   # GET /machines/1 or /machines/1.json

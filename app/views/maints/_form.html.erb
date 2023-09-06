@@ -11,40 +11,51 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :photo, style: "display: block" %>
-    <%= form.text_field :photo %>
-  </div>
+
 
   <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.text_field :date %>
-  </div>
-
-  <div>
-    <%= form.label :type_engine_id, style: "display: block" %>
-    <%= form.text_field :type_engine_id %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+    <%= form.label :tipo_motor, style: "display: block" %>
+    <%= form.collection_select :type_engine_id, @type_engines, :id, :name, required: true, include_blank: true,style: "display: block" %>
   </div>
 
   <div>
     <%= form.label :type_maint_id, style: "display: block" %>
-    <%= form.text_field :type_maint_id %>
+    <%= form.collection_select :type_maint_id, @type_maints, :id, :name, required: true,include_blank: true,style: "display: block" %>
   </div>
 
   <div>
-    <%= form.label :machine_id, style: "display: block" %>
-    <%= form.text_field :machine_id %>
+    <%= form.label :city_id, style: "display: block" %>
+    <%= form.collection_select :city_id, @citys, :id, :name, required: true, include_blank: true,style: "display: block" %>
   </div>
 
   <div>
     <%= form.label :materials, style: "display: block" %>
-    <%= form.text_field :materials %>
+    <%= form.text_field :materials, required: true %>
   </div>
+
+  <div>
+    <%= form.label :photo, style: "display: block" %>
+    <%= form.file_field :photo %>
+  </div>
+
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.date_field :date, required: true %>
+  </div>
+
+ 
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :user_email, value: current_user.email, readonly: true %>
+  </div>
+  
+  <div>
+   
+    <%= form.hidden_field :user_id, value: current_user.id, readonly: true %>
+  </div>
+
+  
 
   <div>
     <%= form.submit %>

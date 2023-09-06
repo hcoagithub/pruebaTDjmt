@@ -1,6 +1,10 @@
 class MaintsController < ApplicationController
   before_action :set_maint, only: %i[ show edit update destroy ]
 
+  before_action :authenticate_user!
+
+  before_action :authorize_admin, only: [:destroy]
+ 
   # GET /maints or /maints.json
   def index
     @maints = Maint.all
@@ -12,6 +16,10 @@ class MaintsController < ApplicationController
 
   # GET /maints/new
   def new
+    @machines = Machine.all
+    @type_engines = TypeEngine.all
+    @type_maints = TypeMaint.all
+    @citys = City.all
     @maint = Maint.new
   end
 
@@ -22,6 +30,7 @@ class MaintsController < ApplicationController
   # POST /maints or /maints.json
   def create
     @maint = Maint.new(maint_params)
+
 
     respond_to do |format|
       if @maint.save
@@ -59,9 +68,23 @@ class MaintsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
+
+
+    def authorize_admin
+      unless current_user && current_user.admin?
+        flash[:alert] = "No tienes permisos para realizar esta acción."
+        redirect_to root_path
+      end
+    end
+
+
+
     def set_maint
       @maint = Maint.find(params[:id])
     end
+   
+
 
     # Only allow a list of trusted parameters through.
     def maint_params

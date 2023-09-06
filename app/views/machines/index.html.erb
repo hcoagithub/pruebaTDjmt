@@ -2,6 +2,11 @@
 
 <h1>Machines</h1>
 
+<%= link_to "New machine", new_machine_path %>
+
+
+
+
 <div id="machines">
   <% @machines.each do |machine| %>
     <%= render machine %>
@@ -11,4 +16,4 @@
   <% end %>
 </div>
 
-<%= link_to "New machine", new_machine_path %>
+
