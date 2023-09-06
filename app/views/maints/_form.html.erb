@@ -1,0 +1,52 @@
+<%= form_with(model: maint) do |form| %>
+  <% if maint.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(maint.errors.count, "error") %> prohibited this maint from being saved:</h2>
+
+      <ul>
+        <% maint.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :photo, style: "display: block" %>
+    <%= form.text_field :photo %>
+  </div>
+
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.text_field :date %>
+  </div>
+
+  <div>
+    <%= form.label :type_engine_id, style: "display: block" %>
+    <%= form.text_field :type_engine_id %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :type_maint_id, style: "display: block" %>
+    <%= form.text_field :type_maint_id %>
+  </div>
+
+  <div>
+    <%= form.label :machine_id, style: "display: block" %>
+    <%= form.text_field :machine_id %>
+  </div>
+
+  <div>
+    <%= form.label :materials, style: "display: block" %>
+    <%= form.text_field :materials %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

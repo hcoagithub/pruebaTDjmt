@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_06_021537) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_06_035852) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_021537) do
     t.index ["type_engine_id"], name: "index_machines_on_type_engine_id"
   end
 
+  create_table "maints", force: :cascade do |t|
+    t.string "photo"
+    t.string "date"
+    t.bigint "type_engine_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "type_maint_id", null: false
+    t.bigint "machine_id", null: false
+    t.string "materials"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["machine_id"], name: "index_maints_on_machine_id"
+    t.index ["type_engine_id"], name: "index_maints_on_type_engine_id"
+    t.index ["type_maint_id"], name: "index_maints_on_type_maint_id"
+    t.index ["user_id"], name: "index_maints_on_user_id"
+  end
+
   create_table "type_engines", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -65,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_021537) do
   end
 
   create_table "type_maints", force: :cascade do |t|
-    t.string "type"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,4 +102,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_021537) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "machines", "type_engines"
+  add_foreign_key "maints", "machines"
+  add_foreign_key "maints", "type_engines"
+  add_foreign_key "maints", "type_maints"
+  add_foreign_key "maints", "users"
 end

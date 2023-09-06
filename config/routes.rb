@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :maints
   get 'home', to: "pages#home"
   get 'terminos_condiciones', to: "pages#terminos_condiciones"
   get 'pages/terminos_condiciones'
